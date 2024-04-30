@@ -1,0 +1,12 @@
+#txtBuscar{
+    height: 60px;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px black;
+    font-size: xx-large;
+}
+
+header{
+    background: #005613;
+    color: #ffffff
+}
+
