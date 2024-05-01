@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const exphbs = require("express-handlebars");
 const arrFrutasVerduras = ["banana", "cebollas", "lechuga", "papas", "pimenton", "tomate"];
+const arrProductos = [];
 
 app.listen(3000, () =>
 {
@@ -18,6 +19,8 @@ app.use("/popper", express.static(__dirname+'/node_modules/@popperjs/core/dist/u
 
 //Carpeta Assets
 app.use("/assets", express.static(__dirname+"/assets"));
+app.use(express.urlencoded({ extended: true }));
+
 
 app.get("/", (req, res) =>
 {
@@ -37,7 +40,7 @@ app.get("/productos", (req, res) =>
     res.render("productos", 
     {
         productos : arrFrutasVerduras,
-        ruta : "/productos"
+        arrProductos : arrProductos
     });
 })
 
@@ -57,6 +60,21 @@ app.get("/productos/:variable", (req, res) =>
     {
         res.send("<center><h1>Producto no existe.</h1></center>");
     }
+});
+
+app.post("/agregarProducto", (req, res) => {
+   const producto = req.body.frutaoverdura;
+
+   if(arrProductos.includes(producto))
+   {
+        res.send("<center><h1>Producto ya esta en el modal.</h1></center>");
+   }
+   else
+   {
+        arrProductos.push(producto);
+        res.redirect("/productos");
+   }
+   
 });
 
 app.get("*", (req, res) => {

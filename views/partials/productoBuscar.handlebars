@@ -7,9 +7,12 @@
                 <div class="card-body">
                     <p class="card-text fs-3">{{buscarProducto}}.</p>
                     <div class="col-12">
-                        <button id="{{frutVerd}}" class="btn btn-info">
-                            <i class="fa-solid fa-cart-plus"></i> Agregar
-                        </button>
+                        <form action="/agregarProducto" method="post">
+                            <input type="hidden" name="frutaoverdura" value="{{buscarProducto}}">
+                            <button type="submit" class="btn btn-info">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
